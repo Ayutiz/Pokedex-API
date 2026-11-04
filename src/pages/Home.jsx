@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '@mui/material/Container';
 import axios from 'axios';
 import Grid from '@mui/material/Grid';
@@ -7,7 +7,17 @@ import { CartaoPokemon } from '../components/CartoesPokemon';
 
 
 export const Home = () => {
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=50&offset=0")
+        const [pokemons, setPokemons] = useState([]);
+    useEffect(() =>{
+        pegarPokemons();
+
+    }, []);
+    const pegarPokemons = () => {
+        axios.get("https://pokeapi.co/api/v2/pokemon?limit=50&offset=0")
+        .then((res) => setPokemons(res.data.results))
+        .catch((err) => console.log(err));
+    }
+
 
   return (
     <div> 
@@ -15,9 +25,12 @@ export const Home = () => {
 
       <Container maxWidth="xl">
         <Grid container spacing={2}>
-          <Grid item xs={3}>
-            <CartaoPokemon/>
-          </Grid>
+            {pokemons.map((pokemon) =>
+                <Grid item xs={3}>
+                    <CartaoPokemon/>
+                </Grid>
+            )}
+          
           <Grid item xs={3}>
             <CartaoPokemon/>
           </Grid>
