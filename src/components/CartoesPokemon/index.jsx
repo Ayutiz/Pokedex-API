@@ -1,13 +1,13 @@
 
-           import React from 'react'
+import React from 'react'
 import { CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle } from '@coreui/react'
 
-export const CartaoPokemon = () => {
+export const CartaoPokemon = ({ name, image }) => {
   return (
     <CCard style={{ width: '18rem' }}>
-      <CCardImage orientation="top" src={'/assets/img/react.jpg'} />
+      <CCardImage orientation="top" src={image} />
       <CCardBody>
-        <CCardTitle>Card title</CCardTitle>
+        <CCardTitle>{name}</CCardTitle>
         <CCardText>
           Some quick example text to build on the card title and make up the bulk of the card's
           content.
@@ -19,4 +19,3 @@ export const CartaoPokemon = () => {
     </CCard>
   )
 }
-          

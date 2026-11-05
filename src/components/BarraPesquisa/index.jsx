@@ -1,5 +1,5 @@
 
-           import React, { useState } from 'react'
+import React, { useState } from 'react'
 import {
   CButton,
   CCollapse,
@@ -22,9 +22,17 @@ import {
 export const BarraPesquisa = () => {
   const [visible, setVisible] = useState(false)
   return (
-    <CNavbar expand="lg" className="bg-body-tertiary mb-3 border border-secondary">
+    <CNavbar expand="lg" colorScheme="dark" className="bg-dark text-white mb-3 border border-secondary" 
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        zIndex: 1030
+      }}
+    >
       <CContainer fluid>
-        <CNavbarBrand href="#">Pokedex</CNavbarBrand>
+        <CNavbarBrand href="#"><img src="/assets/pokemon_logo.jpg" width="200px" /></CNavbarBrand>
         <CNavbarToggler onClick={() => setVisible(!visible)} />
         <CCollapse className="navbar-collapse" visible={visible}>
           <CNavbarNav className="me-auto">
@@ -32,9 +40,6 @@ export const BarraPesquisa = () => {
               <CNavLink href="#" active>
                 Inicio
               </CNavLink>
-            </CNavItem>
-            <CNavItem>
-              <CNavLink href="#">Link</CNavLink>
             </CNavItem>
             <CDropdown variant="nav-item" popper={false}>
               <CDropdownToggle color="secondary">Dropdown button</CDropdownToggle>
@@ -45,11 +50,6 @@ export const BarraPesquisa = () => {
                 <CDropdownItem href="#">Something else here</CDropdownItem>
               </CDropdownMenu>
             </CDropdown>
-            <CNavItem>
-              <CNavLink href="#" disabled>
-                Disabled
-              </CNavLink>
-            </CNavItem>
           </CNavbarNav>
           <CForm className="d-flex">
             <CFormInput type="search" className="me-2" placeholder="Nome do Pokemon/id" />
@@ -62,4 +62,3 @@ export const BarraPesquisa = () => {
     </CNavbar>
   )
 }
-          
