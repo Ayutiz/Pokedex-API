@@ -19,10 +19,10 @@ import {
   CNavLink,
 } from '@coreui/react'
 
-export const BarraPesquisa = ({pokemonFiltro}) => {
+export const BarraPesquisa = ({ pokemonFiltro, tipos, filtrarPorTipo }) => {
   const [visible, setVisible] = useState(false)
   return (
-    <CNavbar expand="lg" colorScheme="dark" className="bg-dark text-white mb-3 border border-secondary" 
+    <CNavbar expand="lg" colorScheme="dark" className="bg-dark text-white mb-3 border border-secondary"
       style={{
         position: 'fixed',
         top: 0,
@@ -41,13 +41,29 @@ export const BarraPesquisa = ({pokemonFiltro}) => {
                 Inicio
               </CNavLink>
             </CNavItem>
+
+
+            {/* Menu de Tipos */}
+
             <CDropdown variant="nav-item" popper={false}>
-              <CDropdownToggle color="secondary">Dropdown button</CDropdownToggle>
-              <CDropdownMenu>
-                <CDropdownItem href="#">Action</CDropdownItem>
-                <CDropdownItem href="#">Another action</CDropdownItem>
+              <CDropdownToggle color="secondary">Filtrar por Tipo</CDropdownToggle>
+              <CDropdownMenu style={{ maxHeight: '300px', overflowY: 'auto' }}>
+        
+                <CDropdownItem onClick={() => filtrarPorTipo("")} style={{ cursor: 'pointer', fontWeight: 'bold' }}>
+                  Todos os Tipos
+                </CDropdownItem>
                 <CDropdownDivider />
-                <CDropdownItem href="#">Something else here</CDropdownItem>
+
+                
+                {tipos.map((tipo, index) => (
+                  <CDropdownItem 
+                    key={index} 
+                    onClick={() => filtrarPorTipo(tipo.name)}
+                    style={{ cursor: 'pointer', textTransform: 'capitalize' }}
+                  >
+                    {tipo.name}
+                  </CDropdownItem>
+                ))}
               </CDropdownMenu>
             </CDropdown>
 
@@ -55,7 +71,7 @@ export const BarraPesquisa = ({pokemonFiltro}) => {
 
           </CNavbarNav>
           <CForm className="d-flex">
-            <CFormInput type="search" onChange={(e) => pokemonFiltro(e.target.value)}  className="me-2" placeholder="Nome do Pokemon/id" />
+            <CFormInput type="search" onChange={(e) => pokemonFiltro(e.target.value)} className="me-2" placeholder="Nome do Pokemon/id" />
             <CButton type="submit" color="danger" variant="outline">
               Pesquisar
             </CButton>
