@@ -2,15 +2,22 @@
 import React from 'react'
 import { CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle } from '@coreui/react'
 
-export const CartaoPokemon = ({ name, image }) => {
+export const CartaoPokemon = ({ name, image, types }) => {
+
+  const pegarTipos = () => {
+    if(types[1]){
+      return types[0].type.name + " | " + types[1].type.name
+    }
+      return types[0].type.name
+  }
+
   return (
     <CCard style={{ width: '18rem' }}>
       <CCardImage orientation="top" src={image} />
       <CCardBody>
         <CCardTitle>{name}</CCardTitle>
         <CCardText>
-          Some quick example text to build on the card title and make up the bulk of the card's
-          content.
+          {pegarTipos()}
         </CCardText>
         <CButton color="primary" href="#">
           Go somewhere

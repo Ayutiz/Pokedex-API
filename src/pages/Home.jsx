@@ -28,25 +28,34 @@ export const Home = () => {
 
     console.log(endpoints)
 
-    var response = axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then((res) => setPokemons(res));
+    axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then((res) => setPokemons(res));
 
+  };
 
+  const pokemonFiltro = (name) => {
+    var pokemonFiltrado = []
+    if(name == ""){
+      pegarPokemons()
+    }
 
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=50&offset=0")
-      .then((res) => setPokemons(res.data.results))
-      .catch((err) => console.log(err));
+    for (var i in pokemons) {
+      if(pokemons[i].data.name.includes(name)) {
+        pokemonFiltrado.push(pokemons[i]);
+      }
+    }
+    setPokemons(pokemonFiltrado)
   }
 
 
   return (
     <div style={{paddingTop: '90px'}}>
-      <BarraPesquisa />
+      <BarraPesquisa pokemonFiltro={pokemonFiltro}/>
 
       <Container maxWidth="xl">
         <Grid container spacing={2}>
           {pokemons.map((pokemon, key) =>
-            <Grid item xs={3} key={key}>
-              <CartaoPokemon name={pokemon.data.name} image={pokemon.data.sprites.front_default} />
+            <Grid item xs={12} sm={5} lg={2} key={key}>
+              <CartaoPokemon name={pokemon.data.name} image={pokemon.data.sprites.front_default} types={pokemon.data.types} />
             </Grid>
           )}
         </Grid>
