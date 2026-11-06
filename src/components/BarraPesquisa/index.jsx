@@ -19,7 +19,7 @@ import {
   CNavLink,
 } from '@coreui/react'
 
-export const BarraPesquisa = ({ pokemonFiltro, tipos, filtrarPorTipo }) => {
+export const BarraPesquisa = ({ pokemonFiltro, tipos, filtrarPorTipo, }) => {
   const [visible, setVisible] = useState(false)
   return (
     <CNavbar expand="lg" colorScheme="dark" className="bg-dark text-white mb-3 border border-secondary"
@@ -70,11 +70,8 @@ export const BarraPesquisa = ({ pokemonFiltro, tipos, filtrarPorTipo }) => {
 
 
           </CNavbarNav>
-          <CForm className="d-flex">
+          <CForm className="d-flex" onSubmit={(e) => e.preventDefault()}>
             <CFormInput type="search" onChange={(e) => pokemonFiltro(e.target.value)} className="me-2" placeholder="Nome do Pokemon/id" />
-            <CButton type="submit" color="danger" variant="outline">
-              Pesquisar
-            </CButton>
           </CForm>
 
 

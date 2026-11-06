@@ -17,6 +17,7 @@ export const Home = () => {
   const [tipos, setTipos] = useState([]);
   const [mensagemTipo, setMensagemTipo] = useState("");
   const [erro, setErro] = useState(false);
+  const [tipoSelecionado, setTipoSelecionado] = useState("");
 
 
 
@@ -65,8 +66,12 @@ export const Home = () => {
   };
 
   const filtrarPorTipo = (tipoNome) => {
+    setTipoSelecionado(tipoNome);
+
+
     if (tipoNome === "") {
       setPokemons(pokemonsOriginal);
+      
       setMensagemTipo("");
       return;
     }
@@ -78,7 +83,7 @@ export const Home = () => {
 
 
         setPokemons(filtrados);
-        setMensagemTipo(`Exibindo ${filtrados.length} Pokemons do tipo ${tipoNome}`);
+        setMensagemTipo(`Exibindo ${filtrados.length} Pokemons do tipo ${tipoNome.charAt(0).toUpperCase() + tipoNome.slice(1)}`);
       })
       .catch((err) => console.log(err));
 
@@ -95,22 +100,27 @@ export const Home = () => {
 
   const pokemonFiltro = (name) => {
 
-    if (name == "") {
-      setPokemons(pokemonsOriginal);
-      return;
+  var pokemonFiltrado = [];
+
+  for (var i in pokemonsOriginal) {
+
+    var nomePokemon = pokemonsOriginal[i].data.name.toLowerCase();
+    var idPokemon = pokemonsOriginal[i].data.id.toString()
+
+
+
+    if (
+      (nomePokemon.includes(name.toLowerCase()) || idPokemon.includes(name))  &&
+      (tipoSelecionado == "" ||
+        pokemonsOriginal[i].data.types.some((tipo) => tipo.type.name == tipoSelecionado))
+
+    ) {
+      pokemonFiltrado.push(pokemonsOriginal[i]);
     }
-
-    var pokemonFiltrado = []
-
-
-    for (var i in pokemonsOriginal) {
-      if (pokemonsOriginal[i].data.name.toLowerCase().includes(name.toLowerCase())) {
-        pokemonFiltrado.push(pokemonsOriginal[i]);
-      }
-    }
-    setPokemons(pokemonFiltrado)
   }
 
+  setPokemons(pokemonFiltrado);
+}
 
 
   // Mensagem de Erro quando nao consegue chamar a API
@@ -142,7 +152,7 @@ export const Home = () => {
         <Grid container spacing={2}>
           {pokemons.map((pokemon, key) =>
             <Grid item xs={12} sm={5} lg={2} key={key}>
-              <CartaoPokemon name={pokemon.data.name} image={pokemon.data.sprites.front_default} types={pokemon.data.types} />
+              <CartaoPokemon name={pokemon.data.name} image={pokemon.data.sprites.front_default} types={pokemon.data.types} id={pokemon.data.id}  />
             </Grid>
           )}
         </Grid>
