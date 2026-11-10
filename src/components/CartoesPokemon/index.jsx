@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CModal, CModalHeader, CModalTitle, CModalBody, CModalFooter } from '@coreui/react'
 
-export const CartaoPokemon = ({ name, id, image, types, height, weight, abilities, stats }) => {
+export const CartaoPokemon = ({ name, id, image, types, height, weight, abilities, stats, base_experience }) => {
 
 
 
@@ -23,7 +23,7 @@ export const CartaoPokemon = ({ name, id, image, types, height, weight, abilitie
 
   return (
     <>
-      <CCard style={{ width: '100%', maxWidth: '18rem', margin:'0 auto' }}>
+      <CCard style={{ width: '100%', maxWidth: '18rem', margin: '0 auto' }}>
         <CCardImage orientation="top" src={image} />
         <CCardBody>
           <CCardText>
@@ -39,47 +39,73 @@ export const CartaoPokemon = ({ name, id, image, types, height, weight, abilitie
         </CCardBody>
       </CCard>
 
-    {/* Modal dos poke, tenho que lembrar de deixar bunitin */}
+      {/* Modal dos poke, tenho que lembrar de deixar bunitin */}
 
-      <CModal visible={modalVisivel} onClose={() => setModalVisivel(false)}>
+      <CModal
+        visible={modalVisivel}
+        onClose={() => setModalVisivel(false)}
+        className="pokemonModal"
+        alignment="center"
+      >
         <CModalHeader>
-          <CModalTitle>{name}</CModalTitle>
+          <CModalTitle>ID: {id}</CModalTitle>
         </CModalHeader>
 
         <CModalBody>
-          <p>Número: {id}</p>
-          <img src={image} />
-          <p>Tipos: {pegarTipos()}</p>
-          <p>Altura: {height / 10}m</p>
-          <p>Peso: {weight / 10}kg</p>
-        
-          <p>Status:</p>
 
-          <ul>
-            {stats.map((item,index) => (
-              <li key={index}>
-                {item.stat.name}: {item.base_stat}
-              </li>
-            )
-          
-          
-          )}
-          </ul>
+          <div className="pokemon-imagem-container">
+            <img src={image} alt={name} className="pokemon-imagem-modal" />
+          </div>
 
+          <h3 className="pokemon-nome-modal">{name}</h3>
 
+          <p className="pokemon-tipos-modal">
+            Tipos: {pegarTipos()}
+          </p>
 
-          <p>Habilidades</p>
+          <h5>Status do Pokemon:</h5>
 
-          <ul>
-            {abilities.map((item, index) => (
-              <li key={index}> {item.ability.name} </li>
+          <div className="pokemon-status-grid">
+            {stats.map((item, index) => (
+              <div className="pokemon-status-item" key={index}>
+                <strong>
+                  {item.stat.name === "special-attack" ? "Sp. Attack" :
+                    item.stat.name === "special-defense" ? "Sp. Defense" :
+                      item.stat.name.charAt(0).toUpperCase() + item.stat.name.slice(1)}:
+                </strong>
+                <span>{item.base_stat}</span>
+              </div>
             ))}
-          </ul>
+          </div>
+
+          <h5>Habilidades do Pokemon:</h5>
+
+          <div className="pokemon-habilidades">
+            {abilities.map((item, index) => (
+              <span key={index}>
+                {item.ability.name}
+              </span>
+            ))}
+          </div>
+
+          <div className="pokemon-medidas">
+            <p>
+              <strong>Altura:</strong> {height / 10} m
+            </p>
+
+            <p>
+              <strong>Peso:</strong> {weight / 10} kg
+            </p>
+          </div>
+
+          <p className="pokemon-experiencia">
+            <strong>Exp. base:</strong> {base_experience}
+          </p>
 
         </CModalBody>
 
         <CModalFooter>
-          <CButton color='secondary' onClick={() => setModalVisivel(false)}>
+          <CButton color="secondary" onClick={() => setModalVisivel(false)}>
             Fechar
           </CButton>
         </CModalFooter>

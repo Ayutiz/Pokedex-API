@@ -59,3 +59,130 @@
   margin: 15px 0;
   font-size: 14px;
 }
+
+
+/* MODAL DO POKEMON */
+
+.pokemonModal .modal-dialog {
+  max-width: 380px;
+  width: 95%;
+}
+
+.pokemonModal .modal-content {
+  background-color: #f1f1f1;
+  border: 1px solid #222;
+  border-radius: 2px;
+  color: #111;
+}
+
+/* CABEÇALHO */
+
+.pokemonModal .modal-header {
+  background-color: #f1f1f1;
+  border-bottom: none;
+  padding: 15px 20px 5px;
+}
+
+.pokemonModal .modal-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* CORPO */
+
+.pokemonModal .modal-body {
+  background-color: #f1f1f1;
+  padding: 10px 20px 20px;
+}
+
+/* IMAGEM */
+
+.pokemon-imagem-container {
+  width: 207px;
+  height: 203px;
+  border: 1px solid #222;
+  margin: 0 auto 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokemon-imagem-modal {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* NOME E TIPOS */
+
+.pokemon-nome-modal {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 5px 0 15px;
+}
+
+.pokemon-tipos-modal {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* STATUS */
+
+.pokemonModal h5 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.pokemon-status-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pokemon-status-item {
+  display: flex;
+  gap: 5px;
+  font-size: 13px;
+}
+
+/* HABILIDADES */
+
+.pokemon-habilidades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.pokemon-habilidades span {
+  background-color: #fff;
+  border: 1px solid #bbb;
+  padding: 5px 9px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+/* ALTURA E PESO */
+
+.pokemon-medidas {
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.pokemon-experiencia {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* RODAPÉ */
+
+.pokemonModal .modal-footer {
+  background-color: #f1f1f1;
+  border-top: none;
+}

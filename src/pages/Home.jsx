@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Container from '@mui/material/Container';
 import axios from 'axios';
-import Grid from '@mui/material/Grid';
+import { Grid, Button } from '@mui/material';
 import { BarraPesquisa } from '../components/BarraPesquisa';
 import { CartaoPokemon } from '../components/CartoesPokemon';
 
@@ -95,6 +95,11 @@ export const Home = () => {
     setPagina(novaPagina);
     pegarPokemons(novaPagina);
   };
+
+  const voltarInicio = () => {
+    setPagina(0);
+    pegarPokemons(0);
+  }
 
 
 
@@ -195,7 +200,7 @@ export const Home = () => {
 
   return (
     <div style={{ paddingTop: '90px' }}>
-      <BarraPesquisa pokemonFiltro={pokemonFiltro} tipos={tipos} filtrarPorTipo={filtrarPorTipo} />
+      <BarraPesquisa pokemonFiltro={pokemonFiltro} tipos={tipos} filtrarPorTipo={filtrarPorTipo} voltarInicio={voltarInicio} />
       {erroTipos && (
         <p className='mensagemErroTipo'>
           Não foi possivel carregar os tipos de Pokemon. Tente novamente mais tarde
@@ -221,19 +226,19 @@ export const Home = () => {
           {pokemons.map((pokemon, key) =>
             <Grid size={{ xs:12, sm:5, lg:2 }} key={key}>
               <CartaoPokemon name={pokemon.data.name} image={pokemon.data.sprites.front_default} types={pokemon.data.types} id={pokemon.data.id}
-                height={pokemon.data.height} weight={pokemon.data.weight} abilities={pokemon.data.abilities} stats={pokemon.data.stats} />
+                height={pokemon.data.height} weight={pokemon.data.weight} abilities={pokemon.data.abilities} stats={pokemon.data.stats} base_experience={pokemon.data.base_experience} />
             </Grid>
           )}
         </Grid>
 
         <div className='botoesPagina'>
-          <button onClick={paginaAnterior} disabled={pagina === 0} >
+          <Button variant="contained" onClick={paginaAnterior} disabled={pagina === 0} >
             Anterior
-          </button>
+          </Button>
 
-          <button onClick={proximaPagina} disabled={pagina >= Math.ceil(totalPokemons / 20) - 1} >
+          <Button variant='contained' onClick={proximaPagina} disabled={pagina >= Math.ceil(totalPokemons / 20) - 1} >
             Proximo
-          </button>
+          </Button>
 
 
         </div>

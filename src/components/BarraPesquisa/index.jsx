@@ -19,7 +19,7 @@ import {
   CNavLink,
 } from '@coreui/react'
 
-export const BarraPesquisa = ({ pokemonFiltro, tipos, filtrarPorTipo, }) => {
+export const BarraPesquisa = ({ pokemonFiltro, tipos, filtrarPorTipo, voltarInicio}) => {
   const [visible, setVisible] = useState(false)
   return (
     <CNavbar expand="lg" colorScheme="dark" className="bg-dark text-white mb-3 border border-secondary"
@@ -32,7 +32,7 @@ export const BarraPesquisa = ({ pokemonFiltro, tipos, filtrarPorTipo, }) => {
       }}
     >
       <CContainer fluid>
-        <CNavbarBrand href="#"><img src="/assets/pokemon_logo.jpg" width="200px" /></CNavbarBrand>
+        <CNavbarBrand href="#"><img  onClick={voltarInicio} style={{cursor: 'pointe'}} src="/assets/pokemon_logo.jpg" width="200px" /></CNavbarBrand>
         <CNavbarToggler onClick={() => setVisible(!visible)} />
         <CCollapse className="navbar-collapse" visible={visible}>
           <CNavbarNav className="me-auto">
