@@ -36,12 +36,6 @@ export const BarraPesquisa = ({ pokemonFiltro, tipos, filtrarPorTipo, }) => {
         <CNavbarToggler onClick={() => setVisible(!visible)} />
         <CCollapse className="navbar-collapse" visible={visible}>
           <CNavbarNav className="me-auto">
-            <CNavItem>
-              <CNavLink href="#" active>
-                Inicio
-              </CNavLink>
-            </CNavItem>
-
 
             {/* Menu de Tipos */}
 

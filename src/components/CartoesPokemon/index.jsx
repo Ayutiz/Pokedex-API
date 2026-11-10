@@ -23,7 +23,7 @@ export const CartaoPokemon = ({ name, id, image, types, height, weight, abilitie
 
   return (
     <>
-      <CCard style={{ width: '18rem' }}>
+      <CCard style={{ width: '100%', maxWidth: '18rem', margin:'0 auto' }}>
         <CCardImage orientation="top" src={image} />
         <CCardBody>
           <CCardText>
@@ -34,7 +34,7 @@ export const CartaoPokemon = ({ name, id, image, types, height, weight, abilitie
             {pegarTipos()}
           </CCardText>
           <CButton color="primary" onClick={() => setModalVisivel(true)}>
-            Go somewhere
+            Ver Detalhes
           </CButton>
         </CCardBody>
       </CCard>

@@ -1,71 +1,89 @@
-# Getting Started with Create React App
+# Pokédex
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. Sobre o projeto
 
-## Available Scripts
+Este projeto consiste em uma Pokédex desenvolvida utilizando React JS. A aplicação utiliza a PokéAPI para buscar e exibir informações sobre os Pokémon.
 
-In the project directory, you can run:
+O objetivo é permitir que o usuário consulte os Pokémon, pesquise pelo nome ou ID, filtre por tipo e visualize informações mais completas de cada um.
 
-### `npm start`
+## 2. Tecnologias utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Para desenvolver o projeto, foram utilizadas as seguintes tecnologias:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React JS: desenvolvimento da interface.
+- JavaScript: lógica da aplicação.
+- Axios: realização das requisições à API.
+- Material UI: componentes e organização da interface.
+- CoreUI: componentes visuais.
+- CSS: estilização da aplicação.
 
-### `npm test`
+## 3. Como instalar e executar o projeto
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para executar o projeto, é necessário ter o Node.js instalado no computador.
 
-### `npm run build`
+**Passo 1:** Baixe ou clone o repositório do projeto.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Passo 2:** Abra a pasta do projeto no terminal.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Passo 3:** Instale as dependências necessárias utilizando o comando:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+**Passo 4:** Após a instalação, inicie a aplicação com:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Passo 5:** Aguarde a aplicação iniciar. Ela ficará disponível no navegador, normalmente no endereço:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+http://localhost:3000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 4. Como utilizar a aplicação
 
-## Learn More
+Após abrir a aplicação no navegador, o usuário poderá utilizar as seguintes funcionalidades:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Listagem de Pokémon:** na tela inicial são exibidos os Pokémon com seus nomes, números, imagens e tipos.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Pesquisa:** utilize a barra de pesquisa para encontrar um Pokémon pelo nome ou ID.
 
-### Code Splitting
+**Filtro por tipo:** selecione um tipo de Pokémon para visualizar os Pokémon associados a ele.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Paginação:** utilize os botões de avançar e voltar para navegar entre as páginas da listagem.
 
-### Analyzing the Bundle Size
+**Detalhes do Pokémon:** selecione um card para abrir o modal com informações como altura, peso, habilidades, estatísticas e imagem.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 5. API utilizada
 
-### Making a Progressive Web App
+A aplicação utiliza a PokéAPI, uma API pública e gratuita que disponibiliza informações sobre os Pokémon.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Site da API: https://pokeapi.co/
 
-### Advanced Configuration
+Os dados são obtidos através de requisições HTTP utilizando o Axios.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Foram utilizados principalmente os seguintes endpoints:
 
-### Deployment
+- `/pokemon`: para buscar a lista de Pokémon.
+- `/pokemon/{id ou nome}`: para buscar os detalhes de cada Pokémon.
+- `/type`: para buscar os tipos disponíveis.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 6. Organização do código
 
-### `npm run build` fails to minify
+O projeto foi dividido em componentes para facilitar a organização e manutenção do código.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Pokedex-API
+- **Home.jsx:** responsável pela página principal, requisições à API, paginação e gerenciamento dos dados.
+- **BarraPesquisa:** responsável pela pesquisa e pelos filtros.
+- **CartoesPokemon:** responsável pela exibição dos cards e dos detalhes dos Pokémon.
+- **App.js:** responsável pela estrutura principal da aplicação.
+
+## 7. Decisões de implementação
+
+Durante o desenvolvimento, utilizei o `useState` para controlar os estados da aplicação, como os Pokémon carregados, pesquisas e filtros.
+
+Também utilizei o `useEffect` para executar as requisições à API quando necessário.
+
+Escolhi o Axios para facilitar a comunicação com a PokéAPI e utilizei componentes separados para deixar o código mais organizado e facilitar futuras alterações.
+
+A paginação foi utilizada para carregar os Pokémon em grupos de 20, tornando a navegação mais organizada.
